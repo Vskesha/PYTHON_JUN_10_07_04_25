@@ -53,6 +53,33 @@ def draw_start_button():
 
 def initialize_field():
     screen.clear()
+    t = turtle.Turtle()
+    t.speed(10)
+    t.penup()
+    t.goto(-hwidth, -hheight)
+    t.pendown()
+
+    t.pensize(3)
+    for _ in range(2):
+        t.forward(fwidth)
+        t.left(90)
+        t.forward(fheight)
+        t.left(90)
+
+    t.penup()
+    t.goto(-hwidth, start)
+    t.pendown()
+    t.color("blue")
+    t.write("Start", font=("Arial", 14, "bold"))
+    t.forward(fwidth)
+
+    t.penup()
+    t.goto(-hwidth, finish)
+    t.pendown()
+    t.color("red")
+    t.write("Finish", font=("Arial", 14, "bold"))
+    t.forward(fwidth)
+    t.hideturtle()
 
 # Відслідковування натискання на кнопку
 draw_start_button()
