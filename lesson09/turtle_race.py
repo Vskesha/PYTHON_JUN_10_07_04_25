@@ -120,6 +120,22 @@ def start_race():
         for bot in turtles:
             bot.forward(random.randint(1, max_move))
 
+            if bot.ycor() >= finish:
+                game_in_progress = False
+                declare_winner(bot)
+                break
+
+def declare_winner(winner):
+    winner.penup()
+    winner.goto(0, 0)
+    winner.write(
+        f"Переможець {winner.color()[0]}",
+        font=("Arial", 25, "bold"),
+        align="center",
+    )
+    winner.shapesize(3)
+    winner.goto(0, -60)
+
 # Відслідковування натискання на кнопку
 draw_start_button()
 screen.onscreenclick(start_game)
