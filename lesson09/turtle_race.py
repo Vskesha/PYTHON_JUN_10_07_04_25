@@ -23,9 +23,29 @@ def draw_start_button():
     h = 50
     t = turtle.Turtle()
     t.speed(8)
-    
+    t.penup()
+    t.goto(-w // 2, h)
+    t.pendown()
+    t.color("black", "green")
+    t.begin_fill()
+    for _ in range(2):
+        t.forward(w)
+        t.left(90)
+        t.forward(h)
+        t.left(90)
+    t.end_fill()
+
+    t.color("white")
+    t.forward(w // 2)
+    t.write(
+        "Start game",
+        font=("Arial", h // 2, "bold"),
+        align="center"
+    )
+    t.hideturtle()
 
 # Відслідковування натискання на кнопку
-start_game(0, 0)
+draw_start_button()
+screen.onscreenclick(start_game)
 
 turtle.done()
