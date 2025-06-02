@@ -1,12 +1,19 @@
 import turtle
 
 # Налаштування програми
-
+fwidth = 800
+fheight = 600
+border = 20
 # -----------------------------------------------------------
+hwidth = fwidth // 2
+hheight = fheight // 2
+finish = hheight - border * 2
+start = -finish
 
 screen = turtle.Screen()
 screen.title("Черепаші перегони")
 screen.bgcolor("lightblue")
+screen.setup(fwidth + border * 2, fheight + border * 2)
 
 # Функція для початку гри
 def start_game(x, y):
@@ -43,6 +50,9 @@ def draw_start_button():
         align="center"
     )
     t.hideturtle()
+
+def initialize_field():
+    screen.clear()
 
 # Відслідковування натискання на кнопку
 draw_start_button()
