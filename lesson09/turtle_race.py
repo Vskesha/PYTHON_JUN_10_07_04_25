@@ -18,7 +18,12 @@ def start_game(x, y):
     )
 
 # Функція для малювання кнопки "Почати гру"
-
+def draw_start_button():
+    w = 200
+    h = 50
+    t = turtle.Turtle()
+    t.speed(8)
+    
 
 # Відслідковування натискання на кнопку
 start_game(0, 0)
