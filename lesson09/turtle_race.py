@@ -4,6 +4,8 @@ import turtle
 fwidth = 800
 fheight = 600
 border = 20
+colors = ["red", "blue", "green", "gray", "yellow", "orange", "purple", "brown"]
+turtles = []
 # -----------------------------------------------------------
 hwidth = fwidth // 2
 hheight = fheight // 2
@@ -20,6 +22,8 @@ def start_game(x, y):
     screen.onscreenclick(None)
 
     initialize_field()
+
+    num_players = get_number_of_players()
 
 # Функція для малювання кнопки "Почати гру"
 def draw_start_button():
@@ -77,6 +81,15 @@ def initialize_field():
     t.write("Finish", font=("Arial", 14, "bold"))
     t.forward(fwidth)
     t.hideturtle()
+
+def get_number_of_players():
+    count = screen.numinput(
+        "Кількість гравців",
+        "Введіть кількість гравців (2 - 8): ",
+        minval=2,
+        maxval=8
+    )
+    return int(count)
 
 # Відслідковування натискання на кнопку
 draw_start_button()
