@@ -17,12 +17,9 @@ screen.setup(fwidth + border * 2, fheight + border * 2)
 
 # Функція для початку гри
 def start_game(x, y):
-    t = turtle.Turtle()
-    t.write(
-        "Гра розпочалася",
-        font=("Arial", 30, "bold"),
-        align="center"
-    )
+    screen.onscreenclick(None)
+
+    initialize_field()
 
 # Функція для малювання кнопки "Почати гру"
 def draw_start_button():
