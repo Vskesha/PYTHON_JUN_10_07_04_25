@@ -128,6 +128,10 @@ def start_race():
                 game_in_progress = False
                 declare_winner(bot)
                 break
+        
+        update_status()
+    
+    status_pen.clear()
 
 def declare_winner(winner):
     winner.penup()
@@ -146,6 +150,17 @@ def update_status():
     for current_turtle in turtles:
         if current_turtle.ycor() > leading_turtle.ycor():
             leading_turtle = current_turtle
+        
+    leader_color = leading_turtle.color()[0]
+
+    distance_to_finish = int(finish - leading_turtle.ycor())
+
+    status_pen.clear()
+    status_pen.write(
+        f"Лідирує {leader_color:<10} Дистанція до фінішу: {distance_to_finish:>4}",
+        align="center",
+        font=("Arial", 16, "bold")
+    )
 
 # Відслідковування натискання на кнопку
 draw_start_button()
