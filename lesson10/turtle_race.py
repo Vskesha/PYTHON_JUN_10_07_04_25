@@ -19,6 +19,11 @@ screen.title("Черепаші перегони")
 screen.bgcolor("lightblue")
 screen.setup(fwidth + border * 2, fheight + border * 2)
 
+status_pen = turtle.Turtle()
+status_pen.penup()
+status_pen.hideturtle()
+status_pen.goto(0, finish + border // 2)
+
 # Функція для початку гри
 def start_game(x, y):
     screen.onscreenclick(None)
@@ -119,11 +124,28 @@ def start_race():
         for bot in turtles:
             bot.forward(random.randint(1, max_move))
 
-            # if черепашка перетнула фініш:
-            #     game_in_progress = False
-            #     announce_winner(bot) -- функція для оголошення переможця
-            #     break
+            if bot.ycor() >= finish:
+                game_in_progress = False
+                declare_winner(bot)
+                break
 
+def declare_winner(winner):
+    winner.penup()
+    winner.goto(0, 0)
+    winner.write(
+        f"Переможець {winner.color()[0]}",
+        font=("Arial", 25, "bold"),
+        align="center"
+    )
+    # winner.hideturtle()
+    winner.shapesize(3)
+    winner.goto(0, -60)
+
+def update_status():
+    leading_turtle = turtles[0]
+    for current_turtle in turtles:
+        if current_turtle.ycor() > leading_turtle.ycor():
+            leading_turtle = current_turtle
 
 # Відслідковування натискання на кнопку
 draw_start_button()
