@@ -34,6 +34,8 @@ def start_game(x, y):
 
     initialize_field()
 
+    generate_obstacles()
+
     num_players = get_number_of_players()
 
     generate_turtles(num_players)
@@ -123,9 +125,21 @@ def generate_turtles(num_players):
         turtles.append(bot)
 
 def start_race():
+    turtle.tracer(0)
     game_in_progress = True
     while game_in_progress:
         for bot in turtles:
+
+            direction = 90
+            for obs in obstacles:
+                if bot.distance(obs) < 20:
+                    if bot.xcor() < obs.xcor():
+                        direction = 135
+                    else:
+                        direction = 45
+                    break
+            bot.setheading(direction)
+
             bot.forward(random.randint(1, max_move))
 
             if bot.ycor() >= finish:
@@ -134,8 +148,11 @@ def start_race():
                 break
         
         update_status()
+        turtle.update()
+        time.sleep(delay)
     
     status_pen.clear()
+    turtle.update()
 
 def declare_winner(winner):
     winner.penup()
@@ -170,8 +187,14 @@ def generate_obstacles():
     obstacles.clear()
     for _ in range(number_of_obstacles):
         x = random.randint(-hwidth + border, hwidth - border)
-        y = random.randint(-hheight + border, hheight - border)
+        y = random.randint(start + border, finish - border)
         obs = turtle.Turtle()
+        obs.speed(0)
+        obs.shape("circle")
+        obs.color("black")
+        obs.penup()
+        obs.goto(x, y)
+        obstacles.append(obs)
         
 # Відслідковування натискання на кнопку
 draw_start_button()
