@@ -8,10 +8,13 @@ fheight = 600
 border = 20
 max_move = 10
 number_of_obstacles = 35
+number_of_boosts = 30
 delay = 0.1
+boosts_color = "lightgreen"
 colors = ["red", "blue", "green", "gray", "yellow", "orange", "purple", "brown"]
 turtles = []
 obstacles = []
+boosts = []
 # -----------------------------------------------------------
 hwidth = fwidth // 2
 hheight = fheight // 2
@@ -195,6 +198,9 @@ def generate_obstacles():
         obs.penup()
         obs.goto(x, y)
         obstacles.append(obs)
+
+def generate_boosts():
+    boosts.clear()
         
 # Відслідковування натискання на кнопку
 draw_start_button()
