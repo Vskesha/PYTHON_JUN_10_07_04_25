@@ -1,13 +1,17 @@
 import turtle
 import random
+import time
 
 # Налаштування програми
 fwidth = 800
 fheight = 600
 border = 20
 max_move = 10
+number_of_obstacles = 35
+delay = 0.1
 colors = ["red", "blue", "green", "gray", "yellow", "orange", "purple", "brown"]
 turtles = []
+obstacles = []
 # -----------------------------------------------------------
 hwidth = fwidth // 2
 hheight = fheight // 2
@@ -162,6 +166,13 @@ def update_status():
         font=("Arial", 16, "bold")
     )
 
+def generate_obstacles():
+    obstacles.clear()
+    for _ in range(number_of_obstacles):
+        x = random.randint(-hwidth + border, hwidth - border)
+        y = random.randint(-hheight + border, hheight - border)
+        obs = turtle.Turtle()
+        
 # Відслідковування натискання на кнопку
 draw_start_button()
 screen.onscreenclick(start_game)
