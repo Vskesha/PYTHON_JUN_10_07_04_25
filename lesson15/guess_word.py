@@ -10,5 +10,9 @@ def shuffle_word(word):
     return " ".join(word_list)
 
 
-word = words[0]
-print(shuffle_word(word))
+word = random.choice(words)
+shuffled = shuffle_word(word)
+
+print("Вгадай слово! Ось його перемішані літери:", shuffled)
+print(f"Підказка: перша літера - {word[0]}, остання - {word[-1]}")
+
