@@ -1,10 +1,22 @@
 import random
 
 
-words_by_level = {
-    1: ["кіт", "дім", "мак", "ліс", "мед"],
-    2: ["яблуко", "банан", "дерево", "мавпа", "літо"],
-    3: ["виноград", "апельсин", "ананас", "бібліотека", "телескоп"]
+words_by_category = {
+    "фрукти": {
+        1: ["ківі", "мак", "лічі"],
+        2: ["яблуко", "банан", "груша"],
+        3: ["виноград", "апельсин", "ананас"]
+    },
+    "овочі": {
+        1: ["кріп", "буряк", "ріпа"],
+        2: ["морква", "цибуля", "гарбуз"],
+        3: ["баклажан", "картопля", "кабачок"]
+    },
+    "природа": {
+        1: ["ліс", "море", "сніг"],
+        2: ["озеро", "пісок", "вітер"],
+        3: ["водоспад", "джерело", "полуострів"]
+    }
 }
 
 
@@ -14,15 +26,23 @@ def shuffle_word(word):
     return " ".join(word_list)
 
 
+def choice_category():
+    category = input("Введіть категорію (фрукти, овочі, природа): ")
+    while category not in words_by_category:
+        category = input("Введіть категорію. Будь ласка, введіть одну із цих категорій (фрукти, овочі, природа): ")
+    return category
+
+
 def choice_level():
     level = int(input("Введіть номер рівня гри (1-3): "))
-    while level not in words_by_level:
+    while level not in words_by_category[category]:
         level = int(input("Введіть номер рівня гри. Будь ласка, введіть число від 1 до 3: "))
     return level
 
 
+category = choice_category()
 level = choice_level()
-word = random.choice(words_by_level[level])
+word = random.choice(words_by_category[category][level])
 shuffled = shuffle_word(word)
 
 print("Вгадай слово! Ось його перемішані літери:", shuffled)
