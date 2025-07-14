@@ -1,7 +1,11 @@
 import random
 
 
-words = ["яблуко", "банан", "виноград", "апельсин", "ананас"]
+words_by_level = {
+    1: ["кіт", "дім", "мак", "ліс", "мед"],
+    2: ["яблуко", "банан", "дерево", "мавпа", "літо"],
+    3: ["виноград", "апельсин", "ананас", "бібліотека", "телескоп"]
+}
 
 
 def shuffle_word(word):
@@ -10,7 +14,15 @@ def shuffle_word(word):
     return " ".join(word_list)
 
 
-word = random.choice(words)
+def choice_level():
+    level = int(input("Введіть номер рівня гри (1-3): "))
+    while level not in words_by_level:
+        level = int(input("Введіть номер рівня гри. Будь ласка, введіть число від 1 до 3: "))
+    return level
+
+
+level = choice_level()
+word = random.choice(words_by_level[level])
 shuffled = shuffle_word(word)
 
 print("Вгадай слово! Ось його перемішані літери:", shuffled)
