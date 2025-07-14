@@ -4,7 +4,7 @@ from words import words_by_category
 
 
 def shuffle_word(word):
-    word_list = list(word)
+    word_list = list(word.upper())
     random.shuffle(word_list)
     return " ".join(word_list)
 
