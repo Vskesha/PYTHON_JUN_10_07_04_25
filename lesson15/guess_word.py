@@ -27,16 +27,23 @@ def shuffle_word(word):
 
 
 def choice_category():
-    category = input("Введіть категорію (фрукти, овочі, природа): ")
+    categories = ", ".join(words_by_category.keys())
+    category = input(f"Введіть категорію ({categories}): ")
     while category not in words_by_category:
-        category = input("Введіть категорію. Будь ласка, введіть одну із цих категорій (фрукти, овочі, природа): ")
+        category = input(f"Введіть категорію. Будь ласка, введіть одну із цих категорій ({categories}): ")
     return category
 
 
 def choice_level():
-    level = int(input("Введіть номер рівня гри (1-3): "))
-    while level not in words_by_category[category]:
-        level = int(input("Введіть номер рівня гри. Будь ласка, введіть число від 1 до 3: "))
+    category_dict = words_by_category[category]
+    
+    max_level = max(category_dict.keys())
+    if max_level == 1:
+        return 1
+    
+    level = int(input(f"Введіть номер рівня гри (1-{max_level}): "))
+    while level not in category_dict:
+        level = int(input(f"Введіть номер рівня гри. Будь ласка, введіть число від 1 до {max_level}: "))
     return level
 
 
