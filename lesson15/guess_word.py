@@ -46,7 +46,6 @@ word = random.choice(words_by_category[category][level])
 shuffled = shuffle_word(word)
 
 print("Вгадай слово! Ось його перемішані літери:", shuffled)
-print(f"Підказка: перша літера - {word[0]}, остання - {word[-1]}")
 
 attempts = 3
 while attempts > 0:
@@ -57,5 +56,7 @@ while attempts > 0:
     else:
         attempts -= 1
         print(f"Неправильно! Залишилося спроб: {attempts}")
-
-print(f"Гру закінчено. Правильне слово було: {word}")
+        if attempts == 2:
+            print(f"Підказка: перша літера - {word[0]}, остання - {word[-1]}")
+else:
+    print(f"Гру закінчено. Правильне слово було: {word}")
